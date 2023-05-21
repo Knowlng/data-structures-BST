@@ -58,22 +58,4 @@ public class BST {
             System.out.println(node.getKeyValue());
         printBinaryTree(node.getSmaller(), level+1);
     }
-
-    public void calcDistFromRoot(Node node) {
-        if(node==null) return;
-        if (node.getSmaller() == null && node.getLarger() == null) {
-            int distance = 0;
-            Node parent = node.getParent();
-            while(parent != null) {
-                ++distance;
-                parent = parent.getParent();
-            }
-            node.setDistanceFromRoot(distance);
-            System.out.print(node.getKeyValue() + " distance is: " + distance + "\n");
-
-        }
-        calcDistFromRoot(node.getSmaller());
-        calcDistFromRoot(node.getLarger());
-    }
-
 }
