@@ -1,13 +1,16 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class BST {
 
     private final Comparator cmp;
+    private ArrayList<Node> leafNodeList;
 
     private Node root;
 
     public BST(Comparator comparator) {
         cmp = comparator;
+        leafNodeList = new ArrayList<>();
     }
 
     public Node getRoot() {
@@ -59,21 +62,21 @@ public class BST {
         printBinaryTree(node.getSmaller(), level+1);
     }
 
-    public void calcDistFromRoot(Node node) {
-        if(node==null) return;
-        if (node.getSmaller() == null && node.getLarger() == null) {
-            int distance = 0;
-            Node parent = node.getParent();
-            while(parent != null) {
-                ++distance;
-                parent = parent.getParent();
-            }
-            node.setDistanceFromRoot(distance);
-            System.out.print(node.getKeyValue() + " distance is: " + distance + "\n");
+    public void storeLeafNodes(Node node, int distance) {
+        if (node == null) return;
+        node.setDistanceFromRoot(distance);
 
+        if (node.getSmaller() == null && node.getLarger() == null) {
+            node.setDistanceFromRoot(distance);
+            leafNodeList.add(node);
         }
-        calcDistFromRoot(node.getSmaller());
-        calcDistFromRoot(node.getLarger());
+
+        storeLeafNodes(node.getSmaller(), distance + 1);
+        storeLeafNodes(node.getLarger(), distance + 1);
+    }
+
+    public ArrayList<Node> getLeafNodeList() {
+        return leafNodeList;
     }
 
 }

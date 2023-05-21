@@ -18,11 +18,12 @@ public class Main {
         bst.printBinaryTree(bst.getRoot(), 0);
         System.out.println("\n");
 
-        LeafNodeList leafNodeList = new LeafNodeList();
-        leafNodeList.storeLeafNodes(bst.getRoot());
+        bst.storeLeafNodes(bst.getRoot(), 0);
 
         System.out.println("------------------Leaf Node List-----------------");
-        leafNodeList.printList();
+        for (Object node : bst.getLeafNodeList()) {
+            System.out.println(node + " distance is: " + ((Node) node).getDistanceFromRoot());
+        }
         System.out.println();
     }
 }
