@@ -1,5 +1,28 @@
-class HelloWorld {
+
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!"); 
+        BST bst = new BST(new CmpBook());
+        
+        bst.insert(new Book(5,"I"));
+        bst.insert(new Book(2,"D"));
+        bst.insert(new Book(7,"L"));
+        bst.insert(new Book(1,"A"));
+        bst.insert(new Book(3,"F"));
+        bst.insert(new Book(6,"K"));
+        bst.insert(new Book(8,"M"));
+        bst.insert(new Book(4,"H"));
+        bst.insert(new Book(9,"P"));
+
+        System.out.println("------------------Binary tree-----------------");
+        System.out.println("\n");
+        bst.printBinaryTree(bst.getRoot(), 0);
+        System.out.println("\n");
+
+        LeafNodeList leafNodeList = new LeafNodeList();
+        leafNodeList.storeLeafNodes(bst.getRoot());
+
+        System.out.println("------------------Leaf Node List-----------------");
+        leafNodeList.printList();
+        System.out.println();
     }
 }
